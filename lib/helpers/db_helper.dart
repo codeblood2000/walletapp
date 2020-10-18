@@ -10,13 +10,12 @@ class DBHelper {
         return db.execute(
             'CREATE TABLE parties(id TEXT PRIMARY KEY, name TEXT, mobile TEXT, address TEXT)');
       }, version: 1);
-    } else if (table == 'records') {
-      return sql.openDatabase(path.join(dbPath, 'record.db'),
-          onCreate: (db, version) {
-        return db.execute(
-            'CREATE TABLE records(id TEXT PRIMARY KEY, name TEXT, amount INTEGER ,remark TEXT, type TEXT, date TEXT)');
-      }, version: 1);
     }
+    return sql.openDatabase(path.join(dbPath, 'record.db'),
+        onCreate: (db, version) {
+      return db.execute(
+          'CREATE TABLE records(id TEXT PRIMARY KEY, name TEXT, amount INTEGER ,remark TEXT, type TEXT, date TEXT)');
+    }, version: 1);
   }
 
   static Future<void> insert(String table, Map<String, Object> data) async {

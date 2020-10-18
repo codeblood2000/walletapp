@@ -67,21 +67,18 @@ class RecordsProvider with ChangeNotifier {
 
   Future<void> fetchAndSetParties() async {
     final dataList = await DBHelper.getData('records');
-    print(dataList);
-    _records = dataList
-        .map((item) => Record(
-              id: item['id'],
-              amount: int.parse(item['amount']),
-              name: item['name'],
-              remark: item['remark'],
-              type: item['type'],
-              date: DateTime.parse(item['date']),
-            ))
-        .toList();
-    print('done');
-    _records.forEach((element) {
-      print(element.remark);
-    });
+    _records = dataList.map((item) {
+      return Record(
+        id: item['id'],
+        amount: (item['amount']),
+        name: item['name'],
+        remark: item['remark'],
+        type: item['type'],
+        date: DateTime.parse(item['date']),
+      );
+    }).toList();
+
+    _records.forEach((element) {});
     // print(_parties[0].name);
     // print(_parties[1].name);
     // print(_parties[2].name);
